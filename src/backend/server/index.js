@@ -7,6 +7,9 @@ const app = express();
 const mainConfig = require('../../../package.json');
 const config = require('../config.json');
 const db = require('../models');
+const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
+const schema = require('../graphql-schema');
+
 const serveStatic = () =>
     app.use(
         '/assets',
@@ -53,6 +56,9 @@ if (process.env.NODE_ENV === 'development') {
         }
     });
 }
+
+app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 //app.use('', routes);
 app.get('*', function(req, res) {
