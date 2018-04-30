@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
     var itemUrl = sequelize.define(
         'itemUrl',
         {
-            url: DataTypes.STRING
+            url: DataTypes.STRING,
+            itMain: DataTypes.BOOLEAN
         },
         {}
     );

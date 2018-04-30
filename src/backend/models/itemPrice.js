@@ -3,7 +3,13 @@ module.exports = (sequelize, DataTypes) => {
     var itemPrice = sequelize.define(
         'itemPrice',
         {
-            date: DataTypes.DATE
+            date: {
+                type: DataTypes.DATE,
+                defaul: sequelize.NOW
+            },
+            price: {
+                type: DataTypes.FLOAT
+            }
         },
         {}
     );
