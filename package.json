@@ -1,10 +1,12 @@
 {
     "name": "books",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Стоимость книг и прочих товаров",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "NODE_ENV=development node index.js",
+        "migrate": "sequelize db:migrate"
     },
     "dependencies": {
         "sequelize": "^4.37.6",
@@ -64,7 +66,8 @@
         "@storybook/addon-options": "~3.4.2",
         "babel-plugin-styled-components": "^1.5.1",
         "prop-types": "^15.6.1",
-        "uglifyjs-webpack-plugin": "^1.2.5"
+        "uglifyjs-webpack-plugin": "^1.2.5",
+        "sequelize-cli": "^4.0.0"
     },
     "author": "Skvortsov Maksim",
     "license": "MIT"

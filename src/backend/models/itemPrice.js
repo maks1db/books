@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         {}
     );
     itemPrice.associate = function(models) {
-        models.itemPrice.belongTo(models.item, {
+        models.itemPrice.belongsTo(models.item, {
             onDelete: 'cascade',
             foreignKey: {
                 allowNull: false

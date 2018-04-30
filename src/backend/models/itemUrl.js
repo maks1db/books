@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         {}
     );
     itemUrl.associate = function(models) {
-        models.itemUrl.belongTo(models.item, {
+        models.itemUrl.belongsTo(models.item, {
             onDelete: 'cascade',
             foreignKey: {
                 allowNull: false

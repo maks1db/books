@@ -6,6 +6,7 @@ const path = require('path');
 const app = express();
 const mainConfig = require('../../../package.json');
 const config = require('../config.json');
+const db = require('../models');
 const serveStatic = () =>
     app.use(
         '/assets',
@@ -58,8 +59,9 @@ app.get('*', function(req, res) {
     res.sendFile(path.resolve(__dirname, '../../../public/', 'index.html'));
 });
 
-app.listen(config.port, () =>
-    console.log(`Server ${mainConfig.name} on ${config.port}`)
-);
+app.listen(config.port, () => {
+    console.log(`Server ${mainConfig.name} on ${config.port}`);
+    db.sequelize.sync();
+});
 
 module.exports = app;
