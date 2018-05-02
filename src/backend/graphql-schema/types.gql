@@ -8,7 +8,9 @@ module.exports = `
         itemType: String,
         orderNumber: Int,
         owner: String,
-        description: String 
+        description: String,
+        priceList: [Price],
+        urlList: [Url] 
     }
 
     type Price {
@@ -17,9 +19,19 @@ module.exports = `
         price: Float,
         itemId: Int    
     }
+
+    type Url {
+        id: Int,
+        itMain: Boolean,
+        url: String,
+        itemId: Int,
+        domain: String   
+    }
+
     type Query {
-        items (itemType: String): [Item],
-        itemPrice (itemId: Int): [Price]
+        items (itemType: String): [Item]
+        itemPrice (itemId: Int, date: Date, price: Float): [Price]
+        itemUrl (itemId: Int): [Url]
     }
     type Mutation {
         item (
@@ -36,6 +48,12 @@ module.exports = `
             date: Date,
             price: Float,
             itemId: Int
-        ): Price
+        ): Price,
+        itemUrl (
+            id: Int,
+            itMain: Boolean,
+            url: String,
+            itemId: Int
+        ): Url
     }
 `;

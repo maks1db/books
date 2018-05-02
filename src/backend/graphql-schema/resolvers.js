@@ -1,6 +1,21 @@
 const models = require('../models');
+const update = require('../../helpers/models/update');
 
 const resolvers = {
+    Item: {
+        priceList: async arg => {
+            return await models.itemPrice.findAll({
+                where: { itemId: arg.id },
+                order: [['date', 'DESC'], ['price', 'DESC']]
+            });
+        },
+        urlList: async arg => {
+            return await models.itemUrl.findAll({
+                where: { itemId: arg.id },
+                order: [['itMain', 'DESC']]
+            });
+        }
+    },
     Query: {
         items: async (__, arg) =>
             await models.item.findAll({
@@ -11,29 +26,17 @@ const resolvers = {
             await models.itemPrice.findAll({
                 where: arg,
                 order: [['date', 'DESC']]
+            }),
+        itemUrl: async (__, arg) =>
+            await models.itemUrklfindAll({
+                where: arg,
+                order: [['itMain', 'DESC']]
             })
     },
     Mutation: {
-        item: async (__, arg) => {
-            if (arg.id) {
-                const item = await models.item.findOne({
-                    where: { id: arg.id }
-                });
-                return item ? item.update(arg) : models.item.create(arg);
-            } else {
-                return models.item.create(arg);
-            }
-        },
-        itemPrice: async (__, arg) => {
-            if (arg.id) {
-                const item = await models.itemPrice.findOne({
-                    where: { id: arg.id }
-                });
-                return item ? item.update(arg) : models.itemPrice.create(arg);
-            } else {
-                return models.itemPrice.create(arg);
-            }
-        }
+        item: async (__, arg) => await update(models.item, arg),
+        itemPrice: async (__, arg) => await update(models.itemPrice, arg),
+        itemUrl: async (__, arg) => await update(models.itemUrl, arg)
     }
 };
 

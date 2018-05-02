@@ -4,3 +4,5 @@ $ sequelize help              # Display this help text.
 $ sequelize init              # Initializes the project.
 $ sequelize migration:create  # Generates a new migration file.
 $ sequelize version           # Prints the version number.
+
+./node_modules/.bin/sequelize migration:create --name NAME

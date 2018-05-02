@@ -1,4 +1,4 @@
-const typeDefs = require('./types');
+const typeDefs = require('./types.gql');
 const resolvers = require('./resolvers');
 const { makeExecutableSchema } = require('graphql-tools');
 
