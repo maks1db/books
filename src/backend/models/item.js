@@ -22,26 +22,6 @@ module.exports = (sequelize, DataTypes) => {
                         item.orderNumber =
                             (result && (result.dataValues.maxNumber || 0)) + 1;
                     }
-                },
-                afterSave: async item => {
-                    const items = await sequelize.models.item.findAll({
-                        where: {
-                            orderNumber: {
-                                $gte: item.orderNumber
-                            },
-                            id: {
-                                $not: item.id
-                            }
-                        },
-                        order: [['orderNumber']]
-                    });
-
-                    let ind = item.orderNumber;
-                    for (let e in items) {
-                        ind++;
-                        e.orderNumber = ind;
-                        e.save();
-                    }
                 }
             }
         }

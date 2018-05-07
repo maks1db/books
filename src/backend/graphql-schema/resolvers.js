@@ -1,5 +1,6 @@
 const models = require('../models');
 const update = require('../../helpers/models/update');
+const updateOrderNumber = require('./updateOrderNumber');
 
 const resolvers = {
     Item: {
@@ -34,7 +35,12 @@ const resolvers = {
             })
     },
     Mutation: {
-        item: async (__, arg) => await update(models.item, arg),
+        item: async (__, arg) => {
+            const result = await update(models.item, arg);
+            arg.id && (await updateOrderNumber(result));
+
+            return result;
+        },
         itemPrice: async (__, arg) => await update(models.itemPrice, arg),
         itemUrl: async (__, arg) => await update(models.itemUrl, arg)
     }

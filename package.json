@@ -1,21 +1,33 @@
 {
     "name": "books",
-    "version": "0.0.2",
+    "version": "0.1.0",
     "description": "Стоимость книг и прочих товаров",
     "main": "index.js",
     "scripts": {
+        "start":
+            "webpack-dev-server --content-base public --debug --output-pathinfo --watch-poll --hot --inline --port 4001 --mode development",
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "NODE_ENV=development nodemon index.js",
         "migrate": "sequelize db:migrate"
     },
     "dependencies": {
-        "apollo-server-express": "^1.3.6",
+        "@material-ui/icons": "^1.0.0-beta.43",
+        "axios": "^0.18.0",
         "body-parser": "^1.18.2",
         "express": "^4.16.3",
         "graphql": "^0.13.2",
         "graphql-tools": "^3.0.0",
+        "material-ui": "^1.0.0-beta.45",
         "mysql2": "^1.5.3",
         "ramda": "^0.25.0",
+        "react-redux": "^5.0.7",
+        "react-redux-toastr": "^7.2.6",
+        "react-router": "^4.2.0",
+        "react-router-dom": "^4.2.2",
+        "react-router-redux": "^5.0.0-alpha.6",
+        "redux": "^4.0.0",
+        "redux-form": "^7.3.0",
+        "redux-thunk": "^2.2.0",
         "sequelize": "^4.37.6"
     },
     "devDependencies": {
