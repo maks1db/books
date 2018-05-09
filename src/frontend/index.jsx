@@ -4,6 +4,7 @@ import App from './App.jsx';
 import { Provider } from 'react-redux';
 import configureStore from './store';
 import createHistory from 'history/createBrowserHistory';
+import './styles/index.scss';
 
 const history = createHistory();
 const store = configureStore(history);
