@@ -4,20 +4,11 @@ import Table, {
     TableBody,
     TableCell,
     TableHead,
-    TableRow
+    TableRow,
+    TablePagination
 } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 import Img from '../Items/Img.jsx';
-
-const CustomTableCell = withStyles(theme => ({
-    head: {
-        backgroundColor: theme.palette.common.black,
-        color: theme.palette.common.white
-    },
-    body: {
-        fontSize: 14
-    }
-}))(TableCell);
 
 const styles = theme => ({
     root: {
@@ -43,13 +34,11 @@ function CustomizedTable(props) {
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
-                        <CustomTableCell>Название</CustomTableCell>
-                        <CustomTableCell numeric>Изображение</CustomTableCell>
-                        <CustomTableCell numeric>Цена</CustomTableCell>
-                        <CustomTableCell numeric>
-                            Цена со скидкой
-                        </CustomTableCell>
-                        <CustomTableCell numeric>Моя цена</CustomTableCell>
+                        <TableCell>Название</TableCell>
+                        <TableCell>Изображение</TableCell>
+                        <TableCell>Цена</TableCell>
+                        <TableCell>Цена со скидкой</TableCell>
+                        <TableCell>Моя цена</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -60,15 +49,15 @@ function CustomizedTable(props) {
                         tabIndex={-1}
                         selected={false}
                     >
-                        <TableCell component="tr" scope="row">
+                        <TableCell scope="row">
                             Сенлорен, Эйзенберг: Введение в Elixir
                         </TableCell>
-                        <TableCell numeric>
+                        <TableCell>
                             <Img src="//img1.labirint.ru/books59/581645/big.jpg" />
                         </TableCell>
-                        <TableCell numeric>labirint.ru: 1124</TableCell>
-                        <TableCell numeric>labirint.ru: 843</TableCell>
-                        <TableCell numeric>780</TableCell>
+                        <TableCell>labirint.ru: 1124</TableCell>
+                        <TableCell>labirint.ru: 843</TableCell>
+                        <TableCell>780</TableCell>
                     </TableRow>
 
                     <TableRow
@@ -78,18 +67,33 @@ function CustomizedTable(props) {
                         tabIndex={-1}
                         selected={false}
                     >
-                        <TableCell component="tr" scope="row">
+                        <TableCell scope="row">
                             Роберт Маккаммон- Пятерка
                         </TableCell>
-                        <TableCell numeric>
+                        <TableCell>
                             <Img src="//img1.labirint.ru/books50/492961/big.jpg" />
                         </TableCell>
-                        <TableCell numeric>labirint.ru: 506</TableCell>
-                        <TableCell numeric>labirint.ru: 308</TableCell>
-                        <TableCell numeric>320</TableCell>
+                        <TableCell>labirint.ru: 506</TableCell>
+                        <TableCell>labirint.ru: 308</TableCell>
+                        <TableCell>320</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>
+            <TablePagination
+                component="div"
+                count={25}
+                rowsPerPage={6}
+                page={1}
+                backIconButtonProps={{
+                    'aria-label': 'Previous Page'
+                }}
+                nextIconButtonProps={{
+                    'aria-label': 'Next Page'
+                }}
+                labelRowsPerPage="Товаров на странице"
+                // onChangePage={this.handleChangePage}
+                // onChangeRowsPerPage={this.handleChangeRowsPerPage}
+            />
         </Paper>
     );
 }

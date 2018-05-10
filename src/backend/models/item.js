@@ -8,7 +8,9 @@ module.exports = (sequelize, DataTypes) => {
             itemType: DataTypes.STRING,
             orderNumber: DataTypes.INTEGER,
             owner: DataTypes.STRING,
-            description: DataTypes.STRING
+            description: DataTypes.STRING,
+            myPrice: DataTypes.INTEGER,
+            myPriceHot: DataTypes.INTEGER
         },
         {
             hooks: {

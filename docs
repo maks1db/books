@@ -5,4 +5,5 @@ $ sequelize init              # Initializes the project.
 $ sequelize migration:create  # Generates a new migration file.
 $ sequelize version           # Prints the version number.
 
-./node_modules/.bin/sequelize migration:create --name NAME
+./node_modules/.bin/sequelize model:create --name MyUser --attributes first_name:string,last_name:string,bio:text
+./node_modules/.bin/sequelize migration:create --name addPriceItems

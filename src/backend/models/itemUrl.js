@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
         {
             url: DataTypes.STRING,
             itMain: DataTypes.BOOLEAN,
-            domain: DataTypes.STRING
+            domain: DataTypes.STRING,
+            discount: DataTypes.INTEGER
         },
         {
             hooks: {
