@@ -1,7 +1,7 @@
 import { setTitle } from '../actions/app.js';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import TableHead from '../components/Table/Head.jsx';
+import Table from '../components/Table/Table.jsx';
 
 function mapStateToProps(state) {
     return {};
@@ -20,6 +20,6 @@ export default class Books extends Component {
     }
 
     render() {
-        return <TableHead />;
+        return <Table />;
     }
 }
