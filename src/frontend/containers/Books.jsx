@@ -1,25 +1,54 @@
-import { setTitle } from '../actions/app.js';
+import { setTitle as setTitleAction } from '../actions/app.js';
 import { connect } from 'react-redux';
+const R = require('ramda');
 import React, { Component } from 'react';
 import Table from '../components/Table/Table.jsx';
+import {
+    getItems as getItemsAction,
+    changePagination as changePaginationAction
+} from '../actions/table';
 
 function mapStateToProps(state) {
-    return {};
+    return {
+        items: state.table.items,
+        pagination: state.table.pagination
+    };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        setTitle: title => dispatch(setTitle(title))
+        setTitle: title => title |> setTitleAction |> dispatch,
+        getItems: pagination => {
+            getItemsAction('books', pagination) |> dispatch;
+        },
+        changePagination: (key, value) =>
+            changePaginationAction(key, value) |> dispatch
     };
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Books extends Component {
     componentDidMount() {
-        this.props.setTitle('Цены на книги');
+        const { setTitle, getItems, pagination } = this.props;
+
+        setTitle('Цены на книги');
+        getItems(pagination);
     }
 
+    onChangePagination = (key, value) => {
+        const { changePagination, pagination, getItems } = this.props;
+        changePagination(key, value);
+        getItems(pagination);
+    };
+
     render() {
-        return <Table />;
+        const { items, changePagination, pagination } = this.props;
+        return (
+            <Table
+                items={items}
+                onChangePagination={changePagination}
+                pagination={pagination}
+            />
+        );
     }
 }

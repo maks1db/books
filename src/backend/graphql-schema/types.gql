@@ -9,15 +9,20 @@ module.exports = `
         orderNumber: Int,
         owner: String,
         description: String,
+        myPrice: Int,
+        myPriceHot: Int,
+        active: Boolean,
         priceList: [Price],
-        urlList: [Url] 
+        urlList: [Url],
+        minPrice: [Price] 
     }
 
     type Price {
         id: Int,
         date: Date,
         price: Float,
-        itemId: Int    
+        itemId: Int,
+        itemUrl: Url    
     }
 
     type Url {
@@ -29,7 +34,7 @@ module.exports = `
     }
 
     type Query {
-        items (itemType: String): [Item]
+        items (itemType: String, limit: Int, offset: Int): [Item]
         itemPrice (itemId: Int, date: Date, price: Float): [Price]
         itemUrl (itemId: Int): [Url]
     }
@@ -41,19 +46,24 @@ module.exports = `
             itemType: String,
             orderNumber: Int,
             owner: String,
-            description: String 
+            description: String,
+            myPrice: Int,
+            myPriceHot: Int,
+            active: Boolean 
         ): Item
         itemPrice (
             id: Int,
             date: Date,
             price: Float,
-            itemId: Int
+            itemId: Int,
+            itemUrlId: Int
         ): Price,
         itemUrl (
             id: Int,
             itMain: Boolean,
             url: String,
-            itemId: Int
+            itemId: Int,
+            discount: Int
         ): Url
     }
 `;

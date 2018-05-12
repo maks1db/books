@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
+const format = require('date-format');
 import Table, {
     TableBody,
     TableCell,
@@ -26,76 +27,81 @@ const styles = theme => ({
     }
 });
 
-function CustomizedTable(props) {
-    const { classes } = props;
+class MainTable extends React.PureComponent {
+    render() {
+        const { classes, items, onChangePagination, pagination } = this.props;
 
-    return (
-        <Paper className={classes.root}>
-            <Table className={classes.table}>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Название</TableCell>
-                        <TableCell>Изображение</TableCell>
-                        <TableCell>Цена</TableCell>
-                        <TableCell>Цена со скидкой</TableCell>
-                        <TableCell>Моя цена</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    <TableRow
-                        hover
-                        role="checkbox"
-                        aria-checked={false}
-                        tabIndex={-1}
-                        selected={false}
-                    >
-                        <TableCell scope="row">
-                            Сенлорен, Эйзенберг: Введение в Elixir
-                        </TableCell>
-                        <TableCell>
-                            <Img src="//img1.labirint.ru/books59/581645/big.jpg" />
-                        </TableCell>
-                        <TableCell>labirint.ru: 1124</TableCell>
-                        <TableCell>labirint.ru: 843</TableCell>
-                        <TableCell>780</TableCell>
-                    </TableRow>
-
-                    <TableRow
-                        hover
-                        role="checkbox"
-                        aria-checked={false}
-                        tabIndex={-1}
-                        selected={false}
-                    >
-                        <TableCell scope="row">
-                            Роберт Маккаммон- Пятерка
-                        </TableCell>
-                        <TableCell>
-                            <Img src="//img1.labirint.ru/books50/492961/big.jpg" />
-                        </TableCell>
-                        <TableCell>labirint.ru: 506</TableCell>
-                        <TableCell>labirint.ru: 308</TableCell>
-                        <TableCell>320</TableCell>
-                    </TableRow>
-                </TableBody>
-            </Table>
-            <TablePagination
-                component="div"
-                count={25}
-                rowsPerPage={6}
-                page={1}
-                backIconButtonProps={{
-                    'aria-label': 'Previous Page'
-                }}
-                nextIconButtonProps={{
-                    'aria-label': 'Next Page'
-                }}
-                labelRowsPerPage="Товаров на странице"
-                // onChangePage={this.handleChangePage}
-                // onChangeRowsPerPage={this.handleChangeRowsPerPage}
-            />
-        </Paper>
-    );
+        return (
+            <Paper className={classes.root}>
+                <Table className={classes.table}>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Название</TableCell>
+                            <TableCell>Изображение</TableCell>
+                            <TableCell>Цена</TableCell>
+                            <TableCell>Низкие цены</TableCell>
+                            <TableCell>Моя цена</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {items.data.map(x => (
+                            <TableRow
+                                hover
+                                role="checkbox"
+                                aria-checked={false}
+                                tabIndex={-1}
+                                selected={false}
+                                key={x.id}
+                            >
+                                <TableCell scope="row">{x.title}</TableCell>
+                                <TableCell>
+                                    <Img src={x.img} />
+                                </TableCell>
+                                <TableCell>
+                                    {x.priceList.map(p => (
+                                        <div key={p.id}>
+                                            {p.itemUrl.domain}: {p.price}
+                                        </div>
+                                    ))}
+                                </TableCell>
+                                <TableCell>
+                                    {x.minPrice.map(p => (
+                                        <div key={p.id}>
+                                            {p.itemUrl.domain} ({format.asString(
+                                                'dd.MM.yyyy',
+                                                new Date(p.date)
+                                            )}): {p.price}
+                                        </div>
+                                    ))}
+                                </TableCell>
+                                <TableCell>
+                                    {x.myPrice}
+                                    <br /> {x.myPriceHot}
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+                <TablePagination
+                    component="div"
+                    count={items.data.length}
+                    rowsPerPage={pagination.rowsPerPage}
+                    page={pagination.page}
+                    backIconButtonProps={{
+                        'aria-label': 'Previous Page'
+                    }}
+                    nextIconButtonProps={{
+                        'aria-label': 'Next Page'
+                    }}
+                    labelRowsPerPage="Товаров на странице"
+                    onChangePage={(_, page) => onChangePagination('page', page)}
+                    onChangeRowsPerPage={ev => {
+                        onChangePagination('rowsPerPage', ev.target.value);
+                    }}
+                />
+            </Paper>
+        );
+    }
 }
 
-export default withStyles(styles)(CustomizedTable);
+export default withStyles(styles)(MainTable);

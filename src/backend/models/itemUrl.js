@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false
             }
         });
+        models.itemUrl.hasMany(models.itemPrice, { as: 'price' });
     };
     return itemUrl;
 };

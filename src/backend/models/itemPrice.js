@@ -20,6 +20,12 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false
             }
         });
+        models.itemPrice.belongsTo(models.itemUrl, {
+            onDelete: 'cascade',
+            foreignKey: {
+                allowNull: false
+            }
+        });
     };
 
     return itemPrice;
