@@ -1,4 +1,5 @@
 const R = require('ramda');
+const prepareMutation = require('./prepareMutation');
 
 const find = model => id => {
     return [
@@ -16,7 +17,8 @@ const update = data => result => {
 };
 
 module.exports = (model, data) => {
-    return data.id
-        ? R.pipe(find(model), update(data))(data.id)
-        : update(data)([undefined, model]);
+    const prepareData = prepareMutation(data);
+    return prepareData.id
+        ? R.pipe(find(model), update(prepareData))(prepareData.id)
+        : update(prepareData)([undefined, model]);
 };

@@ -1,12 +1,14 @@
 import { setTitle as setTitleAction } from '../actions/app.js';
-import { connect } from 'react-redux';
-const R = require('ramda');
-import React, { Component } from 'react';
-import Table from '../components/Table/Table.jsx';
 import {
     getItems as getItemsAction,
     changePagination as changePaginationAction
 } from '../actions/table';
+import { connect } from 'react-redux';
+const R = require('ramda');
+import React, { Component } from 'react';
+import Table from '../components/Table/Table.jsx';
+import BtnNewItem from '../components/Table/BtnNewItem.jsx';
+import { push } from 'react-router-redux';
 
 function mapStateToProps(state) {
     return {
@@ -22,7 +24,8 @@ function mapDispatchToProps(dispatch) {
             getItemsAction('books', pagination) |> dispatch;
         },
         changePagination: (key, value) =>
-            changePaginationAction(key, value) |> dispatch
+            changePaginationAction(key, value) |> dispatch,
+        onChangeRoute: route => route |> push |> dispatch
     };
 }
 
@@ -42,13 +45,20 @@ export default class Books extends Component {
     };
 
     render() {
-        const { items, changePagination, pagination } = this.props;
-        return (
+        const {
+            items,
+            changePagination,
+            pagination,
+            onChangeRoute
+        } = this.props;
+        return [
             <Table
                 items={items}
                 onChangePagination={changePagination}
                 pagination={pagination}
-            />
-        );
+                key="table"
+            />,
+            <BtnNewItem key="new" type="books" onClick={onChangeRoute} />
+        ];
     }
 }
