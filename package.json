@@ -1,6 +1,6 @@
 {
     "name": "books",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "Стоимость книг и прочих товаров",
     "main": "index.js",
     "scripts": {

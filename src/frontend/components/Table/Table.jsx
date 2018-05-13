@@ -55,7 +55,7 @@ class MainTable extends React.PureComponent {
                             >
                                 <TableCell scope="row">{x.title}</TableCell>
                                 <TableCell>
-                                    <Img src={x.img} />
+                                    {x.img && <Img src={x.img} />}
                                 </TableCell>
                                 <TableCell>
                                     {x.priceList.map(p => (

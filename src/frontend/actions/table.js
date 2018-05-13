@@ -1,5 +1,5 @@
 import tableConst from '../constants/table';
-import { getItems as getItemsApi } from '../api';
+import { getItems as getItemsApi, saveItem as saveItemApi } from '../api';
 
 export const getItems = (type, pagination) => dispatch => {
     dispatch({ type: tableConst.itemsRequest });
@@ -14,6 +14,16 @@ export const getItems = (type, pagination) => dispatch => {
             payload: x.data.items
         })
     );
+};
+
+export const saveItem = obj => dispatch => {
+    dispatch({ type: tableConst.SAVE_REQUEST });
+    return saveItemApi(obj).then(x => {
+        dispatch({
+            type: tableConst.SAVE_COMPLETE,
+            payload: x.data.item
+        });
+    });
 };
 
 export const clearItems = () => ({
