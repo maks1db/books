@@ -96,6 +96,10 @@ const resolvers = {
             await models.itemUrklfindAll({
                 where: arg,
                 order: [['itMain', 'DESC']]
+            }),
+        item: async (__, arg) =>
+            await models.item.find({
+                where: arg
             })
     },
     Mutation: {

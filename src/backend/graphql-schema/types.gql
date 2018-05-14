@@ -35,7 +35,8 @@ module.exports = `
     }
 
     type Query {
-        items (itemType: String, limit: Int, offset: Int): [Item]
+        items (itemType: String, limit: Int, offset: Int, id: Int): [Item]
+        item (id: Int): Item
         itemPrices (itemId: Int, date: Date, price: Float): [Price]
         itemUrls (itemId: Int): [Url]
     }

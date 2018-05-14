@@ -1,16 +1,25 @@
 import gql from 'graphql-tag';
 
-export default params => gql`
-    mutation {
+export default gql`
+    mutation(
+        $id: Int
+        $title: String
+        $itemType: String
+        $orderNumber: Int
+        $description: String
+        $myPrice: Int
+        $myPriceHot: Int
+        $active: Boolean
+    ) {
         item(
-            id: ${params.id}
-            title: "${params.title}"
-            itemType: "${params.type}"
-            orderNumber: ${params.orderNumber}
-            description: "${params.description}"
-            myPrice: ${params.myPrice}
-            myPriceHot: ${params.myPriceHot}
-            active: ${params.active}
+            id: $id
+            title: $title
+            itemType: $itemType
+            orderNumber: $orderNumber
+            description: $description
+            myPrice: $myPrice
+            myPriceHot: $myPriceHot
+            active: $active
         ) {
             id
         }

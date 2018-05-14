@@ -76,7 +76,7 @@ const minimizers = [
 ].filter(x => x !== false);
 
 const entry = R.compose(
-    runIf(!isDevelopment)(R.concat(polyfills)),
+    runIf(true)(R.concat(polyfills)),
     //runIf(isDevelopment)(R.concat(['react-hot-loader/patch'])),
     R.concat([
         `./src/frontend/index${

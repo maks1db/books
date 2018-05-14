@@ -14,7 +14,7 @@ const style = {
 class NewItem extends PureComponent {
     handleClick = () => {
         const { type, onClick } = this.props;
-        onClick(`/entity/${type}/new`);
+        onClick(`/edit/${type}/new`);
     };
 
     render() {
@@ -23,7 +23,7 @@ class NewItem extends PureComponent {
             <div className={classes.btn}>
                 <Button
                     variant="fab"
-                    color="secondary"
+                    color="primary"
                     onClick={this.handleClick}
                 >
                     <AddIcon />

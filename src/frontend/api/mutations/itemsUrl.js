@@ -1,13 +1,19 @@
 import gql from 'graphql-tag';
 
-export default params => gql`
-    mutation {
+export default gql`
+    mutation itemUrl(
+        $itMain: Boolean
+        $url: String
+        $itemId: Int
+        $discount: Int
+        $id: Int
+    ) {
         itemUrl(
-            itMain: ${params.itMain}, 
-            url: "${params.url}", 
-            itemId: ${params.itemId}, 
-            discount: ${params.discount || 0}, 
-            id: ${params.id}
+            itMain: $itMain
+            url: $url
+            itemId: $itemId
+            discount: $discount
+            id: $id
         ) {
             id
         }

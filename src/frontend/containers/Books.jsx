@@ -25,7 +25,8 @@ function mapDispatchToProps(dispatch) {
         },
         changePagination: (key, value) =>
             changePaginationAction(key, value) |> dispatch,
-        onChangeRoute: route => route |> push |> dispatch
+        onChangeRoute: route => route |> push |> dispatch,
+        onRowClick: id => push(`/edit/books/${id}`) |> dispatch
     };
 }
 
@@ -49,7 +50,8 @@ export default class Books extends Component {
             items,
             changePagination,
             pagination,
-            onChangeRoute
+            onChangeRoute,
+            onRowClick
         } = this.props;
         return [
             <Table
@@ -57,6 +59,7 @@ export default class Books extends Component {
                 onChangePagination={changePagination}
                 pagination={pagination}
                 key="table"
+                onRowClick={onRowClick}
             />,
             <BtnNewItem key="new" type="books" onClick={onChangeRoute} />
         ];

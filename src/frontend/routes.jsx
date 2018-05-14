@@ -8,7 +8,7 @@ export default () => (
     <Layout>
         <Switch>
             <Route exact path="/" component={Books} />
-            <Route exact path="/entity/:type/:id" component={Entity} />
+            <Route exact path="/edit/:type/:id" component={Entity} />
         </Switch>
     </Layout>
 );

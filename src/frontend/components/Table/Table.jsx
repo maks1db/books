@@ -29,7 +29,13 @@ const styles = theme => ({
 
 class MainTable extends React.PureComponent {
     render() {
-        const { classes, items, onChangePagination, pagination } = this.props;
+        const {
+            classes,
+            items,
+            onChangePagination,
+            pagination,
+            onRowClick
+        } = this.props;
 
         return (
             <Paper className={classes.root}>
@@ -52,6 +58,7 @@ class MainTable extends React.PureComponent {
                                 tabIndex={-1}
                                 selected={false}
                                 key={x.id}
+                                onClick={() => onRowClick(x.id)}
                             >
                                 <TableCell scope="row">{x.title}</TableCell>
                                 <TableCell>

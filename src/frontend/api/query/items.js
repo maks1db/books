@@ -1,10 +1,8 @@
 import gql from 'graphql-tag';
 
-export default (type, limit, offset) => gql`
-    query {
-        items (itemType: "${type}", 
-            limit: ${limit},
-            offset: ${offset}) {
+export default gql`
+    query items($type: String, $limit: Int, $offset: Int) {
+        items(itemType: $type, limit: $limit, offset: $offset) {
             id
             title
             img
@@ -29,7 +27,7 @@ export default (type, limit, offset) => gql`
                 id
                 date
                 price
-                itemUrl{
+                itemUrl {
                     url
                     domain
                 }

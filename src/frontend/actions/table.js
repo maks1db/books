@@ -1,28 +1,18 @@
 import tableConst from '../constants/table';
-import { getItems as getItemsApi, saveItem as saveItemApi } from '../api';
+import { getItems as getItemsApi } from '../api';
 
-export const getItems = (type, pagination) => dispatch => {
+export const getItems = (type, pagination) => async dispatch => {
     dispatch({ type: tableConst.itemsRequest });
 
-    getItemsApi(
+    const result = await getItemsApi(
         type,
         pagination.rowsPerPage,
         (pagination.page - 1) * pagination.rowsPerPage
-    ).then(x =>
-        dispatch({
-            type: tableConst.itemsReceive,
-            payload: x.data.items
-        })
     );
-};
 
-export const saveItem = obj => dispatch => {
-    dispatch({ type: tableConst.SAVE_REQUEST });
-    return saveItemApi(obj).then(x => {
-        dispatch({
-            type: tableConst.SAVE_COMPLETE,
-            payload: x.data.item
-        });
+    dispatch({
+        type: tableConst.itemsReceive,
+        payload: result.data.items
     });
 };
 
