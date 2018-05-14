@@ -87,12 +87,12 @@ const resolvers = {
                     order: ['orderNumber']
                 })
             ),
-        itemPrice: async (__, arg) =>
+        itemPrices: async (__, arg) =>
             await models.itemPrice.findAll({
                 where: arg,
                 order: [['date', 'DESC']]
             }),
-        itemUrl: async (__, arg) =>
+        itemUrls: async (__, arg) =>
             await models.itemUrklfindAll({
                 where: arg,
                 order: [['itMain', 'DESC']]

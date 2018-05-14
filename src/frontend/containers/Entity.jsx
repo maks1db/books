@@ -1,5 +1,6 @@
 import { setTitle as setTitleAction } from '../actions/app.js';
 import { connect } from 'react-redux';
+import { saveItem as saveItemAction } from '../actions/table';
 import React, { Component } from 'react';
 import Form from 'Entity/Form.jsx';
 import BtnSave from 'Entity/BtnSave.jsx';
@@ -10,7 +11,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        setTitle: title => title |> setTitleAction |> dispatch
+        setTitle: title => title |> setTitleAction |> dispatch,
+        saveItem: obj => obj |> saveItemAction |> dispatch
     };
 }
 
@@ -30,14 +32,17 @@ export default class Entity extends Component {
             }
         }
     }
+
+    onSave = obj => {
+        const { saveItem } = this.props;
+        saveItem(obj);
+    }
+
     render() {
         return [
             <Form
                 key="form"
-                onSubmit={e => {
-                    var a = 1;
-                    console.log(e);
-                }}
+                onSubmit={this.onSave}
             >
                 <BtnSave />
             </Form>

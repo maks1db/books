@@ -30,13 +30,14 @@ module.exports = `
         itMain: Boolean,
         url: String,
         itemId: Int,
-        domain: String   
+        domain: String,
+        discount: Int   
     }
 
     type Query {
         items (itemType: String, limit: Int, offset: Int): [Item]
-        itemPrice (itemId: Int, date: Date, price: Float): [Price]
-        itemUrl (itemId: Int): [Url]
+        itemPrices (itemId: Int, date: Date, price: Float): [Price]
+        itemUrls (itemId: Int): [Url]
     }
     type Mutation {
         item (
