@@ -13,15 +13,15 @@ const R = require('ramda');
 
 export default (state = initialState, action) => {
     switch (action.type) {
-    case tableConst.itemsRequest:
+    case tableConst.ITEMS_REQUEST:
         return R.assocPath(['items', 'isFetching'], true, state);
 
-    case tableConst.itemsReceive:
+    case tableConst.ITEMS_RECEIVE:
         return (
             R.assocPath(['items', 'data'], action.payload, state)
                 |> R.assocPath(['items', 'isFetching'], false, R.__)
         );
-    case tableConst.itemsClear:
+    case tableConst.ITEMS_CLEAR:
         return R.assocPath(['items', 'data'], [], state);
     case tableConst.CHANGE_PAGINATION:
         return R.assocPath(

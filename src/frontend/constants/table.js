@@ -1,6 +1,6 @@
 export default {
-    itemsRequest: 'ITEMS_REQUEST',
-    itemsReceive: 'ITEMS_RECEIVE',
-    itemsClear: 'ITEMS_CLEAR',
+    ITEMS_REQUEST: 'ITEMS_REQUEST',
+    ITEMS_RECEIVE: 'ITEMS_RECEIVE',
+    ITEMS_CLEAR: 'ITEMS_CLEAR',
     CHANGE_PAGINATION: 'CHANGE_PAGINATION'
 };
