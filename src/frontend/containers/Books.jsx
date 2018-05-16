@@ -54,14 +54,7 @@ export default class Books extends Component {
             onRowClick
         } = this.props;
         return [
-            <Table
-                items={items}
-                onChangePagination={changePagination}
-                pagination={pagination}
-                key="table"
-                onRowClick={onRowClick}
-            />,
-            <BtnNewItem key="new" type="books" onClick={onChangeRoute} />
+            <div></div>
         ];
     }
 }

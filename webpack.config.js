@@ -105,14 +105,6 @@ const lessLoader =
             ]
         };
 
-const alias =
-    process.env.RENDER === 'preact'
-        ? {
-            react: 'preact-compat',
-            'react-dom': 'preact-compat'
-        }
-        : {};
-
 module.exports = {
     entry,
     output: {
@@ -131,7 +123,9 @@ module.exports = {
             path.resolve(__dirname, 'src/frontend'),
             path.resolve(__dirname, 'src/frontend/components/')
         ],
-        alias
+        alias: {
+            helpers: path.resolve(__dirname, 'src/helpers')
+        }
     },
     optimization: {
         minimize: true,
