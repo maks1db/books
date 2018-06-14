@@ -1,8 +1,8 @@
 const models = require('../models');
-const update = require('../../helpers/models/update');
+const update = require('../../libs/models/update');
 const updateOrderNumber = require('./updateOrderNumber');
 const R = require('ramda');
-const runIf = require('../../helpers/logic/runIf');
+const runIf = require('../../libs/logic/runIf');
 const Op = require('sequelize').Op;
 
 const resolvers = {

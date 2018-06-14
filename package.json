@@ -29,21 +29,21 @@
         "react-router-dom": "^4.2.2",
         "react-router-redux": "^5.0.0-alpha.6",
         "redux": "^4.0.0",
-        "redux-form": "^7.3.0",
-        "redux-thunk": "^2.2.0",
-        "sequelize": "^4.37.6",
-        "@babel/polyfill": "7.0.0-beta.44"
+        "redux-form": "^7.4.0",
+        "redux-thunk": "^2.3.0",
+        "sequelize": "^4.37.10",
+        "@babel/polyfill": "^7.0.0-beta.51"
     },
     "devDependencies": {
         "@types/enzyme": "^3.1.6",
         "@types/jest": "^21.1.8",
         "autoprefixer": "^8.1.0",
-        "@babel/cli": "7.0.0-beta.44",
-        "@babel/preset-env": "7.0.0-beta.44",
-        "@babel/preset-react": "7.0.0-beta.44",
-        "@babel/preset-stage-0": "7.0.0-beta.44",
+        "@babel/cli": "^7.0.0-beta.51",
+        "@babel/preset-env": "^7.0.0-beta.51",
+        "@babel/preset-react": "^7.0.0-beta.51",
+        "@babel/preset-stage-0": "^7.0.0-beta.51",
         "babel-core": "7.0.0-bridge.0",
-        "@babel/core": "7.0.0-beta.44",
+        "@babel/core": "^7.0.0-beta.51",
         "@playlyfe/gql": "^2.6.0",
         "babel-eslint": "^8.2.3",
         "babel-jest": "^22.4.3",
@@ -88,7 +88,7 @@
         "prop-types": "^15.6.1",
         "uglifyjs-webpack-plugin": "^1.2.5",
         "sequelize-cli": "^4.0.0",
-        "nodemon": "^1.17.3"
+        "nodemon": "^1.17.5"
     },
     "author": "Skvortsov Maksim",
     "license": "MIT"
